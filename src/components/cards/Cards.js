@@ -78,7 +78,7 @@ const Cards = () => {
 
 
   const confirmarCompra = () => {
-    const tipo = setMovimientos.tipo;
+    
     if (precio >= saldoDisponible) {
       console.log(' el precio es mayor que el saldo')
     } else if (precio <= 1500) {

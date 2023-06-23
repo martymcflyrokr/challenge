@@ -11,7 +11,7 @@ const DataFetcher = () => {
       return new Promise((resolve) => {
         setTimeout(() => {
           resolve(dataMock);
-        }, 1000); // Simulamos una respuesta asíncrona después de 1 segundo
+        }, 3000); // 
       });
     };
 
