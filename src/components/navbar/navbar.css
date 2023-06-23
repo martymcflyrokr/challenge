@@ -1,0 +1,33 @@
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: whitesmoke;
+    padding: 5px;
+    margin-bottom: 1em;
+
+  }
+
+  h1{
+    color:black;
+  }
+
+
+  .right img {
+    height: 30px;
+    width: 30px;
+    padding-left: 10px;
+  }
+
+  .right{
+    display: flex;
+  }
+
+  .icon {
+    padding-right: 10px;
+  }
+  
+  .contenedor-ico{
+    height: 10px;
+    width: 10px;
+  }
