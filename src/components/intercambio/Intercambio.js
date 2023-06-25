@@ -4,6 +4,7 @@ import { DataContext } from '../../context/DataContext';
 import MenuItem from '@mui/material/MenuItem';
 import './intercambio.css';
 import { format } from 'date-fns';
+import Swal from 'sweetalert2';
 
 
 const Intercambio = () => {
@@ -32,6 +33,7 @@ const Intercambio = () => {
     const destino = data.find((moneda) => moneda.ticker === monedaDestino);
 
     if (origen && destino) {
+
       const saldoVentaDestino = parseFloat(cantidadOrigen) * destino.sell_rate;
       const cantidadCompraDestino = saldoVentaDestino / destino.buy_rate;
 
@@ -53,17 +55,26 @@ const Intercambio = () => {
 
 
   const handleConfirmar = () => {
+
+    
     const origen = data.find((moneda) => moneda.ticker === monedaOrigen);
     const destino = data.find((moneda) => moneda.ticker === monedaDestino);
   
     if (origen && destino) {
+
+
       const saldoVentaDestino = parseFloat(cantidadOrigen) * destino.sell_rate;
       const cantidadCompraDestino = saldoVentaDestino / destino.buy_rate;
-  
+
+      if( cantidadCompraDestino <= origen.balance) {
+
       const nuevoSaldoDisponible = parseFloat(saldoDisponible) + saldoVentaDestino - parseFloat(cantidadCompraDestino) * destino.buy_rate;
   
       setSaldoDisponible(nuevoSaldoDisponible.toFixed(2));
-  
+
+      console.log('este es el saldo post compra',origen.balance)
+      
+      
       setData((prevData) =>
         prevData.map((moneda) => {
           if (moneda.ticker === monedaOrigen) {
@@ -93,8 +104,17 @@ const Intercambio = () => {
           status:'COM',
           tipo:'INTERCAMBIO', 
         },
-      ]);
-      
+      ])
+    
+
+      } else {
+        Swal.fire({
+          title: 'Saldo insuficiente!',
+          text: 'No tienes la cripto suficiente para el intercambio',
+          icon: 'error',
+          confirmButtonText: 'Cool'
+        })
+      }
     }
   };
 

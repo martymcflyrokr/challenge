@@ -15,7 +15,8 @@ const DataFetcher = () => {
       });
     };
 
-    fetchData().then((responseData) => {
+    fetchData()
+    .then((responseData) => {
       setData(responseData);
     });
   }, []);
