@@ -3,6 +3,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import '../cards/cards.css'
 import { format } from 'date-fns';
 import { DataContext } from '../../context/DataContext';
+import Swal from 'sweetalert2';
 
 
 const Cards = () => {
@@ -81,9 +82,37 @@ const Cards = () => {
     
     if (precio >= saldoDisponible) {
       console.log(' el precio es mayor que el saldo')
+      handleCloseModal();
+
+      Swal.fire({
+        title: 'Saldo insuficiente!',
+        text: 'No tienes los ARS suficientes para la compra.',
+        icon: 'error',
+        confirmButtonText: 'OK',
+        
+      })
+
     } else if (precio <= 1500) {
-      console.log('sobrepasaste los limites');
+
+      handleCloseModal()
+      
+      Swal.fire({
+        title: 'La compra debe ser mayór a AR$ 1500',
+        text: 'Intenta comprando un poco mas',
+        icon: 'error',
+        confirmButtonText: 'OK'
+      })
+
     } else {
+
+      handleCloseModal();
+
+      Swal.fire(
+        'Compra realizada correctamente!',
+        '',
+        'success'
+      )
+
       actualizarSaldo();
       setMovimientos((prevMovimientos) => [
         ...prevMovimientos,

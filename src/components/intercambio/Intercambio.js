@@ -72,8 +72,6 @@ const Intercambio = () => {
   
       setSaldoDisponible(nuevoSaldoDisponible.toFixed(2));
 
-      console.log('este es el saldo post compra',origen.balance)
-      
       
       setData((prevData) =>
         prevData.map((moneda) => {
@@ -93,6 +91,7 @@ const Intercambio = () => {
         })
         
       );
+
       setMovimientos((prevMovimientos) => [
         ...prevMovimientos,
         {
@@ -105,6 +104,12 @@ const Intercambio = () => {
           tipo:'INTERCAMBIO', 
         },
       ])
+
+      Swal.fire(
+        'Intercambio realizado correctamente!',
+        '',
+        'success'
+      )
     
 
       } else {
@@ -112,15 +117,11 @@ const Intercambio = () => {
           title: 'Saldo insuficiente!',
           text: 'No tienes la cripto suficiente para el intercambio',
           icon: 'error',
-          confirmButtonText: 'Cool'
+          confirmButtonText: 'OK'
         })
       }
     }
   };
-
-  
-  
-
 
 
   return (
