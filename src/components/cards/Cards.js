@@ -108,7 +108,7 @@ const Cards = () => {
       handleCloseModal();
 
       Swal.fire(
-        'Compra realizada correctamente!',
+        'Tu compra se realizó correctamtente!',
         '',
         'success'
       )
